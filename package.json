@@ -1,0 +1,38 @@
+{
+  "name": "grid",
+  "version": "1.0.0",
+  "description": "Adi",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "react"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "react",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.7.4",
+    "babel-runtime": "^6.6.1",
+    "classnames": "^2.1.3",
+    "express": "^4.13.4",
+    "isomorphic-fetch": "^2.2.1",
+    "jquery": "^2.1.3",
+    "mysql": "^2.14.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.4",
+    "redux": "^3.4.0",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.0.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "devDependencies": {
+    "webpack": "^1.15.0"
+  }
+}
