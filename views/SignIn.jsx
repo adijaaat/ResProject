@@ -1,16 +1,29 @@
 import React from 'react';
 import TextBox from '../controls/TextBox.jsx';
 import Button from '../controls/Button.jsx';
+import Modal from 'react-modal';
 import CreatePromise from '../Actions/ServiceCaller.jsx'
+
+const customStyles = {
+  content : {
+    width:'400px',
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }}
 
 class SignIn extends React.Component {
 constructor(){
   super()
-  this.state={username:'',
+  this.state={username:'', isopen:false,
   password:''}
 this.UserOnChange=this.UserOnChange.bind(this)
 this.PasswordOnChange=this.PasswordOnChange.bind(this)
 this.onclickFunc=this.onclickFunc.bind(this)
+
 }
   UserOnChange(e){
     this.setState({username:e.target.value})
@@ -30,27 +43,41 @@ onclickFunc(){
       alert(ex.statusText)
     })
 }
+
+componentWillReceiveProps(nextProps){
+if(nextProps.isOpen== true)
+  this.setState({isopen:true})
+  else
+  this.setState({isopen:false})
+}
   render(){
     return(
+      <Modal
+  isOpen={this.props.isOpen}
+  contentLabel="Modal" style={customStyles}>
+  <div className="container-fluid">
+  <div className="row">
+   <div className="col-md-12 col-md-offset-12">
+     <div className="box">
       <form className="form-horizontal">
-  <div className="control-group">
+  <div className="form-group">
     <label className="control-label" >Email</label>
-    <div className="controls">
-      <TextBox type="text" textcss='text-primary' txtvalue={this.state.username} txtonchange={this.UserOnChange}/>
-    </div>
+      <TextBox type="text" textcss='form-control' txtvalue={this.state.username} txtonchange={this.UserOnChange}/>
   </div>
-  <div className="control-group">
+  <div className="form-group">
     <label className="control-label" >Password</label>
-    <div className="controls">
-      <input type="password" value={this.state.password} onChange={this.PasswordOnChange} />
-    </div>
+      <input type="password" className="form-control" value={this.state.password} onChange={this.PasswordOnChange} />
   </div>
-  <div className="control-group">
-    <div className="controls">
-      <Button type="submit" onclickFunc={this.onclickFunc} btncss="btn" >Sign in</Button>
-    </div>
+  <div className="form-group">
+      <Button onclickFunc={this.onclickFunc} text="Sign in" btncss="btn-block btn btn-lg btn-primary" ></Button>
+      <Button onclickFunc={this.props.closeFunc} text="Close" btncss="btn-block btn btn-lg btn-secondary" ></Button>
   </div>
 </form>
+</div>
+</div>
+</div>
+</div>
+  </Modal>
     )
   }
 }
